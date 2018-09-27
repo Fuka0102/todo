@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
     @tasks=Task.all
+    @today=Date.today
   end
 
   def new
@@ -18,6 +19,7 @@ class TasksController < ApplicationController
   end
 
   def show
+     @tasks=Task.all
      @task=Task.find(params[:id])
   end
 

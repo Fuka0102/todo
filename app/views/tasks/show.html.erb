@@ -1,11 +1,12 @@
 <div class="task_show_item">
     <%= @task.content %>
     <div class="post_time" >
-        <%= @task.created_at %>
+        <%= @task.updated_at. strftime("%Y-%m-%d %H:%M")%>
     </div>
     <% @tasks.each do |task| %>
     <ul class="button">
         <li><%= link_to 'edit', edit_task_path(task) %></li>
         <li><%= link_to 'delete', task, method: :delete, data: { confirm: 'You sure?' } %></li>
     </ul>
+    <% end %>
 </div>
