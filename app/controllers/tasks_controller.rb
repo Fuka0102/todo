@@ -1,15 +1,18 @@
 class TasksController < ApplicationController
+  before_action :task_find, only:[:show, :edit, :update, :destroy]
+
+
   def index
-    @tasks=Task.all
-    @today=Date.today
+    @tasks = Task.all
+    @today = Date.today
   end
 
   def new
-    @task=Task.new
+    @task = Task.new
   end
 
   def create
-    @task=Task.new(task_params)
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to tasks_path
@@ -19,16 +22,14 @@ class TasksController < ApplicationController
   end
 
   def show
-     @tasks=Task.all
-     @task=Task.find(params[:id])
+    @tasks = Task.all
+    
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
 
     if @task.update(task_params)
       redirect_to tasks_path
@@ -38,13 +39,16 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
 
     @task.destroy
     redirect_to tasks_path
   end
 
     private
+    def task_find
+      @task = Task.find(params[:id])
+    end
+
     def task_params
       params.require(:task).permit(:title, :content)
     end
