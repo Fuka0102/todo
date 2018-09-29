@@ -1,7 +1,7 @@
 <div class="task_show_item">
     <%= @task.content %>
     <div class="post_time" >
-        <td><%= l(@task.updated_at, format: :long)%>
+        <td><%= task.updated_at.present? ? l(task.updated_at, format: :middle) : '' %>
     </div>
     
 </div>
