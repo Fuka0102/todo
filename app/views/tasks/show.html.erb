@@ -1,7 +1,9 @@
 <div class="task_show_item">
     <%= @task.content %>
     <div class="post_time" >
-        <td><%= task.updated_at.present? ? l(task.updated_at, format: :middle) : '' %>
+        <td><%= l(@task.updated_at, format: :short) %>
     </div>
     
+    <%= link_to 'Back', tasks_path %>
+
 </div>
