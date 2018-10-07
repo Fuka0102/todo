@@ -1,28 +1,77 @@
-<h1>タスク一覧</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>完了予定日<th>
-      <th>タスク名</th>
-      <th>説明</th>
-      <th>登録日時</th>
-      <th>登録・編集</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr<%= deadline?(task.deadline) ? ' class="red"' : '' %>>
-      <td><%= task.deadline.present? ? l(task.deadline, format: :default) : '' ; %></td>
-      <td><%= link_to(task.title,"/tasks/#{task.id}")%></td>
-      <td><%= task.content %></td>
-      <td><%= l(task.updated_at, format: :short) %></td>
-      <td><%= link_to 'edit', edit_task_path(task) %></td>
-      <td><%= link_to 'delete', task, method: :delete, data: { confirm: 'You sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New', new_task_path %>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Sample</title>
+    <!-- BootstrapのCSS読み込み -->
+    <link href="app/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="app/assets/javascripts/bootstrap.min.js"></script>
+    <!--font -->
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+     <img src="assets/logo.png" >
+    </header>
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="row">
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <h1>ALL TASK</h1>
+            <table>
+              <thead>
+              <tr>
+               <th>Deadline</th>
+               <th>Task name</th>
+               <th>Contents</th>
+               <th>Updated</th>
+               <th></th>
+               </tr>
+              </thead>
+              <tbody>
+                
+                 <% @tasks.each do |task| %>
+                  <div class="card">
+                  <div class="card-body">
+                   <tr<%= deadline?(task.deadline) ? ' class="red"' : '' %>>
+                   <td><%= task.deadline.present? ? l(task.deadline, format: :default) : '' ; %></td>
+                   <td><%= link_to(task.title,"/tasks/#{task.id}")%></td>
+                   <td><%= task.content %></td>
+                   <td><%= l(task.updated_at, format: :short) %></td>
+                   <td><button type="button" class="btn btn-primary" <%= link_to 'edit', edit_task_path(task) %>></button></td>
+                   <td><button type="button" class="btn btn-primary" <%= link_to 'delete', task, method: :delete, data: { confirm: 'You sure?' } %>></button></td>
+                   </tr>
+                 <% end %>
+                 </div>
+                 </div>
+              </tbody>
+            </table>         
+</div>
+</div>
+</div>
+<button type="button" class="btn btn-danger btn-lg"<%= link_to 'New', new_task_path %>></button>
+</div><!--container-->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="row">
+    </div>
+    </div>
+    </div>
+    </div>
+<footer></footer>
+</body>
+</html>

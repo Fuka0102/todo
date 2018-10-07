@@ -27,6 +27,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task 
   end
 
   def update
