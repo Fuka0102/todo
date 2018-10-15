@@ -18,14 +18,7 @@
     <header>
      <img src="assets/logo.png" >
     </header>
-    <div class="container">
-    <div class="row">
-      <div class="col-lg-2">
-        <div class="row">
-    </div>
-    </div>
-    </div>
-    </div>
+   
     <div class="container">
     <div class="row">
       <div class="col-lg-8">
@@ -36,23 +29,20 @@
               <tr>
                <th>Deadline</th>
                <th>Task name</th>
-               <th>Contents</th>
-               <th>Updated</th>
                <th></th>
                </tr>
               </thead>
               <tbody>
                 
-                 <% @tasks.each do |task| %>
+              <% @tasks.each do |task|%>
                   <div class="card">
                   <div class="card-body">
-                   <tr<%= deadline?(task.deadline) ? ' class="red"' : '' %>>
+                  
+                   <tr><%= deadline?(task.deadline) ? ' class="red"' : '' %></tr>
                    <td><%= task.deadline.present? ? l(task.deadline, format: :default) : '' ; %></td>
                    <td><%= link_to(task.title,"/tasks/#{task.id}")%></td>
-                   <td><%= task.content %></td>
-                   <td><%= l(task.updated_at, format: :short) %></td>
-                   <td><button type="button" class="btn btn-primary" <%= link_to 'edit', edit_task_path(task) %>></button></td>
-                   <td><button type="button" class="btn btn-primary" <%= link_to 'delete', task, method: :delete, data: { confirm: 'You sure?' } %>></button></td>
+                   <td><%= link_to 'edit', edit_task_path(task), class: "btn btn-lg btn-primary"  %></td>
+                   <td><%= link_to 'delete', task, method: :delete, class: "btn btn-lg btn-danger", data: { confirm: 'You sure?' } %></button></td>
                    </tr>
                  <% end %>
                  </div>
@@ -62,16 +52,9 @@
 </div>
 </div>
 </div>
-<button type="button" class="btn btn-danger btn-lg"<%= link_to 'New', new_task_path %>></button>
+  <%= link_to 'New', new_task_path, class: "btn btn-lg btn-primary" %>
 </div><!--container-->
-<div class="container">
-    <div class="row">
-      <div class="col-lg-2">
-        <div class="row">
-    </div>
-    </div>
-    </div>
-    </div>
+
 <footer></footer>
 </body>
 </html>

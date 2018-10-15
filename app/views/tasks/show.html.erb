@@ -1,9 +1,10 @@
-<div class="task_show_item">
+<div class="task_show_item", "card">
+  <div class="card-body">
     <%= @task.content %>
-    <div class="post_time" >
-        <td><%= l(@task.updated_at, format: :short) %>
+    <div class="post_time">
+       <%= l(@task.updated_at, format: :short) %>
     </div>
-    
+    </div>
     <%= link_to 'Back', tasks_path %>
-
+   
 </div>
