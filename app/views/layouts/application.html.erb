@@ -10,9 +10,25 @@
   </head>
 
   <body>
-      <header>
-        <%= link_to("ログイン", "/users/login_form") %>
-      </header>
+  <header>
+  <div class="header-logo">
+  <img src="assets/logo.png" >
+  </div>
+  <ul class="header-menus">
+    <li>
+      <%= link_to("投稿一覧", "/posts/index") %>
+    </li>
+    <li>
+      <%= link_to("新規投稿", "/posts/new") %>
+    </li>
+    <li>
+      <%= link_to("ユーザー一覧", "/users/index") %>
+    </li>
+    <li>
+      <%= link_to("新規登録", "/signup") %>
+    </li>
+  </ul>
+</header>
     <%= yield %>
   </body>
 </html>
