@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Todo</title>
+    <title>TweetApp</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <header>
-  <div class="header-logo">
-  <img src="assets/logo.png" >
-  </div>
-  <ul class="header-menus">
-    <li>
-      <%= link_to("投稿一覧", "/posts/index") %>
-    </li>
-    <li>
-      <%= link_to("新規投稿", "/posts/new") %>
-    </li>
-    <li>
-      <%= link_to("ユーザー一覧", "/users/index") %>
-    </li>
-    <li>
-      <%= link_to("新規登録", "/signup") %>
-    </li>
-  </ul>
-</header>
+    <header>
+      <ul class="header-menus">
+        <% current_user = User.find_by(id: session[:user_id]) %>
+        <% if current_user %>
+          <li>
+          <%= link_to(current_user.name, "/users/#{current_user.id}") %>
+          </li>
+          <li>
+            <%= link_to("ALL Tasks", "/") %>
+          </li>
+          <li>
+            <%= link_to("New Task", "/tasks/new") %>
+          </li>
+          <li>
+            <%= link_to("All Users", "/users/index") %>
+          </li>
+          <li>
+            <%= link_to("Logout", "/logout", {method: :post}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("New User", "/signup") %>
+          </li>
+          <li>
+            <%= link_to("Login", "/users/login_form") %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
