@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_125425) do
+ActiveRecord::Schema.define(version: 2018_10_17_134626) do
 
   create_table "ta", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -25,11 +25,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_125425) do
     t.date "deadline"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'string　' for column 'password'
 
 end
